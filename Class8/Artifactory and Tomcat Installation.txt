@@ -13,12 +13,10 @@ Step 3: Configure Artifactory and TOMCAT Software Repository
 Step 4: Install Artifcatory
 Step 5: Change Java Heap Size
 Step 6: Install TOMCAT Web Application server
-Step 7: Configure Web Application Server process Minimum Memory and Maximum Memory
-Step 8: Configure Tomcat user settings
-Step 9: Restart Tomcat and Artifactory Services
-Step 10: Incase if you want to change tomcat port number
-Step 11: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
-Step 12: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
+Step 7: Restart Tomcat and Artifactory Services
+Step 8: Incase if you want to change tomcat port number
+Step 9: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
+Step 10: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
 
 
 *******************************************************************************************************************
@@ -78,35 +76,88 @@ change heap size to 512mb --> if you want play in testing this also just for ref
 *******************************************************************************************************************
 Step 6: Install TOMCAT Web Application server
 
-artifactory is webapps which deployed over tomcat
-
-yum install tomcat-webapps tomcat-admin-webapps -y
-
-*******************************************************************************************************************
-Step 7: Configure Web Application Server process Minimum Memory and Maximum Memory
-
-
-vim /usr/share/tomcat/conf/tomcat.conf
-JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
-
-*******************************************************************************************************************
-Step 8: Configure Tomcat user settings
+mkdir /usr/local/tomcat
+sudo wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz
+sudo tar xvf apache-tomcat-9.0.33.tar.gz --strip-components=1 -C /usr/local/tomcat
+sudo ln -s /usr/local/tomcat/apache-tomcat-9.0.33 /usr/local/tomcat/tomcat
+sudo useradd -r tomcat
+sudo chown -R tomcat:tomcat /usr/local/tomcat
 
 
-vim /usr/share/tomcat/conf/tomcat-users.xml
+### Configure the tomcat service
 
-<role rolename="admin"/>
-<role rolename="admin-gui"/>
-<role rolename="admin-script"/>
-<role rolename="manager"/>
+vim /etc/systemd/system/tomcat.service
+
+[Unit]
+Description=Tomcat Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+
+Environment=JAVA_HOME=/usr/lib/jvm/jre
+Environment='JAVA_OPTS=-Djava.awt.headless=true'
+Environment=CATALINA_HOME=/usr/local/tomcat
+Environment=CATALINA_BASE=/usr/local/tomcat
+Environment=CATALINA_PID=/usr/local/tomcat/temp/tomcat.pid
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M'
+ExecStart=/usr/local/tomcat/bin/catalina.sh start
+ExecStop=/usr/local/tomcat/bin/catalina.sh stop
+
+[Install]
+WantedBy=multi-user.target
+
+
+save the file and exit.Now run the below commands
+--------------------------------------------------------
+systemctl daemon-reload
+systemctl enable tomcat
+systemctl start tomcat
+systemctl status tomcat
+--------------------------------------------------------
+
+systemctl stop firewalld;systemctl disable firewalld
+--------------------------------------------------------------------
+vim /usr/local/tomcat/conf/tomcat-users.xml
+
+<role rolename="tomcat"/>
 <role rolename="manager-gui"/>
-<role rolename="manager-script"/>
-<role rolename="manager-jmx"/>
-<role rolename="manager-status"/>
-<user username="admin" password="adminadmin" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" />
+<role rolename="role1"/>
+<user username="tomcat" password="tomcat123>" roles="tomcat,manager-gui"/>
+<user username="admin" password="adminadmin" roles="tomcat,role1"/>
+
+
+save the file and exit
+------------------------------------------------------------
+comment the lines in the below file
+
+vim /usr/local/tomcat/webapps/manager/META-INF/context.xml
+
+
+
+ <!-- <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+       allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+	   
+	   
+save the file and exit.Now run the below commands
+
+systemctl daemon-reload
+systemctl enable tomcat
+systemctl start tomcat
+systemctl status tomcat
+-----------------------------------------------------------------------------------------------------
+now access the tomcat admin url
+
+http://<tomcat server ip>:8080/manager.html
+
+username - tomcat
+password - s3cret
+
 
 *******************************************************************************************************************
-Step 9: Restart Tomcat and Artifactory Services
+Step 7: Restart Tomcat and Artifactory Services
 
 
 systemctl restart artifactory;systemctl enable artifactory;systemctl enable tomcat;systemctl restart tomcat
@@ -116,7 +167,7 @@ http://192.168.122.32:8080/
 http://192.168.149.22:8081/artifactory/
 
 *******************************************************************************************************************
-Step 10: Incase if you want to change tomcat port number
+Step 8: Incase if you want to change tomcat port number
 
 
 vi /usr/share/tomcat/conf/server.xml --> port change in tomcat
@@ -127,5 +178,5 @@ in artifactory console
 http://35.232.21.100:8081/artifactory/list/libs-snapshot-local/com/wakaleo/gameoflife/gameoflife-web/1.0-SNAPSHOT/gameoflife-web-1.0-20190923.100047-1.war
 
 *******************************************************************************************************************
-Step 11: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
-Step 12: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
+Step 9: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
+Step 10: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
