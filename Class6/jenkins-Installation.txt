@@ -16,10 +16,7 @@ Step 8: Global Tools Settings - In Jenkins Console - JAVA , MAVEN, GIT
 *******************************************************************************************************************
 Step 1 : Install pre-requisite software packages
 
-yum install java-1.8.0-openjdk-devel
-yum install vim 
-yum install wget 
-yum install git -y
+yum install java-1.8.0-openjdk-devel vim wget git -y
 systemctl stop firewalld;systemctl disable firewalld
 wget https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
 tar xvf apache-maven-3.5.4-bin.tar.gz
