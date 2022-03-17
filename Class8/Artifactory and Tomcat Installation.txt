@@ -55,18 +55,17 @@ mvn -version
 *******************************************************************************************************************
 Step 3: Configure Artifactory and TOMCAT Software Repository
 
-just refernece - https://www.jfrog.com/confluence/display/RTF/Installing+Artifactory
+just refernece - https://jfrog.com/community/download-artifactory-oss/
 
 
-just refernece - https://www.jfrog.com/confluence/display/RTF/Installing+on+Linux+Solaris+or+Mac+OS#InstallingonLinuxSolarisorMacOS-ServiceInstallation
+wget https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo -O jfrog-artifactory-rpms.repo
+sudo mv jfrog-artifactory-rpms.repo /etc/yum.repos.d/
 
-
-wget https://bintray.com/jfrog/artifactory-rpms/rpm -O /etc/yum.repos.d/bintray-jfrog-artifactory-rpms.repo
 *******************************************************************************************************************
 
 Step 4: Install Artifcatory
 
-yum install jfrog-artifactory-oss
+sudo yum update && sudo yum install jfrog-artifactory-oss
 
 *******************************************************************************************************************
 Step 5: Change Java Heap Size
