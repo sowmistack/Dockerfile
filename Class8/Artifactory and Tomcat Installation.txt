@@ -133,9 +133,8 @@ vim /usr/local/tomcat/conf/tomcat-users.xml
 
 <role rolename="tomcat"/>
 <role rolename="manager-gui"/>
-<role rolename="role1"/>
-<user username="tomcat" password="tomcat123>" roles="tomcat,manager-gui"/>
-<user username="admin" password="adminadmin" roles="tomcat,role1"/>
+<user username="tomcat" password="s3cret" roles="tomcat,manager-gui"/>
+
 
 
 save the file and exit
