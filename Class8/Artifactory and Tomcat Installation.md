@@ -1,28 +1,28 @@
 To start this handson lab,you need following resources.
 
-1. Google cloud (or any other cloud or some VM's from your local machine).
-2. Jenkins VM should have 2 CPU / 4 GB memory / 40 gb Disk. Install Jenkins in CentOS 7 OS machine.
-3. Class 6 and Class 7 must be completed and ready
-4. Make sure you have root access or root login credentials.
-5. For this Tomcat and Artifactory VM you must have 2 CPU and minimum 7.5 GB memory.Create this VM with CentOS 7
+## 1. Google cloud (or any other cloud or some VM's from your local machine).
+## 2. Jenkins VM should have 2 CPU / 4 GB memory / 40 gb Disk. Install Jenkins in CentOS 7 OS machine.
+## 3. Class 6 and Class 7 must be completed and ready
+## 4. Make sure you have root access or root login credentials.
+## 5. For this Tomcat and Artifactory VM you must have 2 CPU and minimum 7.5 GB memory.Create this VM with CentOS 7
 
 *******************************************************************************************************************
-Step 1 : Install pre-requisite software packages
-Step 2 : Configure environment variables
-Step 3: Configure Artifactory and TOMCAT Software Repository
-Step 4: Install Artifcatory
-Step 5: Change Java Heap Size
-Step 6: Install TOMCAT Web Application server
-Step 7: Restart Tomcat and Artifactory Services
-Step 8: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
-Step 9: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
+## Step 1 : Install pre-requisite software packages
+## Step 2 : Configure environment variables
+## Step 3: Configure Artifactory and TOMCAT Software Repository
+## Step 4: Install Artifcatory
+## Step 5: Change Java Heap Size
+## Step 6: Install TOMCAT Web Application server
+## Step 7: Restart Tomcat and Artifactory Services
+## Step 8: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
+## Step 9: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
 
 
 *******************************************************************************************************************
 
 Artifactory
 
-Step 1 : Install pre-requisite software packages
+## Step 1 : Install pre-requisite software packages
 ```
 yum install java-1.8.0-openjdk-devel vim wget git -y
 systemctl stop firewalld;systemctl disable firewalld
@@ -32,7 +32,7 @@ mv apache-maven-3.5.4  /usr/local/apache-maven
 ```
 *******************************************************************************************************************
 
-Step 2 : Configure environment variables
+## Step 2 : Configure environment variables
 ```
 vim ~/.bash_profile
 ```
@@ -52,7 +52,7 @@ source ~/.bash_profile
 mvn -version
 ```
 *******************************************************************************************************************
-Step 3: Configure Artifactory and TOMCAT Software Repository
+## Step 3: Configure Artifactory and TOMCAT Software Repository
 
 just refernece - https://jfrog.com/community/download-artifactory-oss/
 
@@ -71,12 +71,12 @@ Note ::::::
 
 *******************************************************************************************************************
 
-Step 4: Install Artifcatory
+## Step 4: Install Artifcatory
 ```
 sudo yum update && sudo yum install jfrog-artifactory-oss
 ```
 *******************************************************************************************************************
-Step 5: Change Java Heap Size
+## Step 5: Change Java Heap Size
 
 ```
 vim /opt/jfrog/artifactory/app/bin/artifactory.default --> Just for reference
@@ -84,7 +84,7 @@ vim /opt/jfrog/artifactory/app/bin/artifactory.default --> Just for reference
 change heap size to 512mb --> if you want play in testing this also just for reference
 
 *******************************************************************************************************************
-Step 6: Install TOMCAT Web Application server
+## Step 6: Install TOMCAT Web Application server
 ```
 mkdir /usr/local/tomcat
 sudo wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.tar.gz
@@ -178,7 +178,7 @@ password - s3cret
 
 
 *******************************************************************************************************************
-Step 7: Restart Tomcat and Artifactory Services
+## Step 7: Restart Tomcat and Artifactory Services
 
 ```
 systemctl restart artifactory;systemctl enable artifactory;systemctl enable tomcat;systemctl restart tomcat
@@ -192,5 +192,5 @@ http://<linux machine ip address>:8081/artifactory/
 
 *******************************************************************************************************************
 
-Step 8: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
-Step 9: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
+## Step 8: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
+## Step 9: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
