@@ -14,9 +14,8 @@ Step 4: Install Artifcatory
 Step 5: Change Java Heap Size
 Step 6: Install TOMCAT Web Application server
 Step 7: Restart Tomcat and Artifactory Services
-Step 8: Incase if you want to change tomcat port number
-Step 9: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
-Step 10: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
+Step 8: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
+Step 9: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
 
 
 *******************************************************************************************************************
