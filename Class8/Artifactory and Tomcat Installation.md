@@ -26,9 +26,10 @@ Artifactory
 ```
 yum install java-1.8.0-openjdk-devel vim wget git -y
 systemctl stop firewalld;systemctl disable firewalld
-wget https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-tar xvf apache-maven-3.5.4-bin.tar.gz
-mv apache-maven-3.5.4  /usr/local/apache-maven
+wget https://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+tar xvf apache-maven-3.8.5-bin.tar.gz
+cd apache-maven-3.8.5/
+mv *  /usr/local/apache-maven
 ```
 *******************************************************************************************************************
 
