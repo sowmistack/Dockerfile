@@ -142,7 +142,7 @@ vim /usr/local/tomcat/conf/tomcat-users.xml
 ```
 <role rolename="tomcat"/>
 <role rolename="manager-gui"/>
-<user username="tomcat" password="s3cret" roles="tomcat,manager-gui"/>
+<user username="tomcat" password="s3cret" roles="tomcat,manager-gui,manager-script"/>
 ```
 
 
