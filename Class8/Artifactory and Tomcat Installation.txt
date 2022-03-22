@@ -170,21 +170,14 @@ Step 7: Restart Tomcat and Artifactory Services
 
 systemctl restart artifactory;systemctl enable artifactory;systemctl enable tomcat;systemctl restart tomcat
 
-http://192.168.122.32:8080/
 
-http://192.168.149.22:8081/artifactory/
+access tomcat console
 
-*******************************************************************************************************************
-Step 8: Incase if you want to change tomcat port number
+http://<linux machine ip address>:8080/
 
-
-vi /usr/share/tomcat/conf/server.xml --> port change in tomcat
-
-
-in artifactory console
-
-http://35.232.21.100:8081/artifactory/list/libs-snapshot-local/com/wakaleo/gameoflife/gameoflife-web/1.0-SNAPSHOT/gameoflife-web-1.0-20190923.100047-1.war
+http://<linux machine ip address>:8081/artifactory/
 
 *******************************************************************************************************************
-Step 9: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
-Step 10: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
+
+Step 8: Create new pipeline and enable manual deployment to deploy application in tomcat web application server
+Step 9: Create new pipeline and enable auto deployment to deploy application in tomcat web application server
