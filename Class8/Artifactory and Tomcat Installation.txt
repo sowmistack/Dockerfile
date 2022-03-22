@@ -23,13 +23,13 @@ Step 9: Create new pipeline and enable auto deployment to deploy application in 
 Artifactory
 
 Step 1 : Install pre-requisite software packages
-
+```
 yum install java-1.8.0-openjdk-devel vim wget git -y
 systemctl stop firewalld;systemctl disable firewalld
 wget https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
 tar xvf apache-maven-3.5.4-bin.tar.gz
 mv apache-maven-3.5.4  /usr/local/apache-maven
-
+```
 *******************************************************************************************************************
 
 Step 2 : Configure environment variables
