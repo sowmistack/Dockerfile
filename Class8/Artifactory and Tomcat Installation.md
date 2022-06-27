@@ -181,8 +181,8 @@ http://<linux machine ip address>:8080/
 
 ![image](/images/tomcat-console.png)
 
-username - tomcat
-password - s3cret
+- username - tomcat
+- password - s3cret
 
 
 *******************************************************************************************************************
