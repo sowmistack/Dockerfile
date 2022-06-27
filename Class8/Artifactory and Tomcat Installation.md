@@ -192,6 +192,7 @@ http://<linux machine ip address>:8080/
 	
 - click manager App icon
 
+![image](/images/tomcat-console.png)
 
 http://<linux machine ip address>:8081/artifactory/
 
