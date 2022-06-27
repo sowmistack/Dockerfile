@@ -1,10 +1,10 @@
 To start this handson lab,you need following resources.
 
 - 1. Google cloud (or any other cloud or some VM's from your local machine).
-- 2. Jenkins VM should have 2 CPU / 4 GB memory / 40 gb Disk. Install Jenkins in CentOS 7 OS machine.
+- 2. Jenkins VM should have 2 CPU / 4 GB memory / 40 gb Disk. Install Jenkins in **rocky linux 8 and above** OS machine.
 - 3. Class 6 and Class 7 must be completed and ready
 - 4. Make sure you have root access or root login credentials.
-- 5. For this Tomcat and Artifactory VM you must have 2 CPU and minimum 7.5 GB memory.Create this VM with CentOS 7
+- 5. For this Tomcat and Artifactory VM you must have 2 CPU and minimum 7.5 GB memory.Create this VM with **rocky linux 8 and above** OS machine
 
 *******************************************************************************************************************
 - Step 1 : Install pre-requisite software packages
@@ -186,9 +186,12 @@ password - s3cret
 systemctl restart artifactory;systemctl enable artifactory;systemctl enable tomcat;systemctl restart tomcat
 ```
 
-access tomcat console
+access tomcat console 
 
 http://<linux machine ip address>:8080/
+	
+- click manager App icon
+
 
 http://<linux machine ip address>:8081/artifactory/
 
