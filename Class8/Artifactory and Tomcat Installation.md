@@ -173,7 +173,13 @@ systemctl status tomcat
 -----------------------------------------------------------------------------------------------------
 now access the tomcat admin url
 
-http://<tomcat server ip>:8080/manager.html
+- access tomcat console 
+
+http://<linux machine ip address>:8080/
+	
+- click manager App icon
+
+![image](/images/tomcat-console.png)
 
 username - tomcat
 password - s3cret
@@ -186,13 +192,7 @@ password - s3cret
 systemctl restart artifactory;systemctl enable artifactory;systemctl enable tomcat;systemctl restart tomcat
 ```
 
-access tomcat console 
 
-http://<linux machine ip address>:8080/
-	
-- click manager App icon
-
-![image](/images/tomcat-console.png)
 
 http://<linux machine ip address>:8081/artifactory/
 
