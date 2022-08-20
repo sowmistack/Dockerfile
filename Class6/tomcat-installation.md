@@ -1,18 +1,90 @@
-Install java in your windows machine and reboot.
-download Java Se Development kit and install it.
+To start this handson lab,you need following resources.
 
-https://www.oracle.com/in/java/technologies/javase-jdk11-downloads.html
+1. Google cloud (or any other cloud or some VM's from your local machine).
+2. Jenkins VM should have 2 CPU / 4 GB memory / 40 gb Disk. Also Install **rocky linux 8 and above** OS machine.
+3. Make sure you have root access or root login credentials.
 
-Install tomcat in windows
+*******************************************************************************************************************
+Step 1 : Install pre-requisite software packages
+Step 2 : Configure environment variables
+Step 3: Configure Jenkins Software Repository
+Step 4: Configure Jenkins Key
+Step 5: Install Jenkins
+Step 6: start the Jenkins Service Persistantly
+Step 7: Install the necessary plugins
+Step 8: Global Tools Settings - In Jenkins Console - JAVA , MAVEN, GIT
+*******************************************************************************************************************
+Step 1 : Install pre-requisite software packages
 
-Download tomcat software and install in windows
+yum install java-1.8.0-openjdk-devel vim wget git -y
+systemctl stop firewalld;systemctl disable firewalld
+wget https://archive.apache.org/dist/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+tar xvf apache-maven-3.8.5-bin.tar.gz
+cd apache-maven-3.8.5/
+mkdir -p /usr/local/apache-maven
+mv *  /usr/local/apache-maven
 
-https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.69/bin/apache-tomcat-8.5.69.exe (currently this link is facing 404 error)
-you can check below link if above one is not working 
-https://www.filehorse.com/download-apache-tomcat/63128/download/#google_vignette (you can go with this link for tomcat installation )
+*******************************************************************************************************************
+Step 2 : Configure environment variables
 
-download the small application and deploy it
-```
-https://github.com/cloudnloud/Devops_Tools_Training/blob/main/Class6/gameoflife.war
-```
+vim ~/.bash_profile
 
+In this file
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0
+export JRE_HOME=/usr/lib/jvm/java-1.8.0/jre
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin:$JRE_HOME/bin
+export M2_HOME=/usr/local/apache-maven
+export M2=$M2_HOME/bin 
+export PATH=$M2:$PATH
+
+source ~/.bash_profile
+*******************************************************************************************************************
+
+Check Maven Build Tool Version
+
+mvn -version
+
+
+*******************************************************************************************************************
+Step 3: Configure Jenkins Software Repository
+
+
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+*******************************************************************************************************************
+Step 4: Configure Jenkins Key
+
+
+rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+*******************************************************************************************************************
+Step 5: Install Jenkins
+
+
+yum install jenkins -y
+
+*******************************************************************************************************************
+Step 6: start the Jenkins Service Persistantly
+
+
+systemctl restart jenkins;systemctl enable jenkins;systemctl status jenkins
+*******************************************************************************************************************
+
+
+http://<jenkins Server IP >:8080/
+
+[root@master java-1.8.0]# cat /var/lib/jenkins/secrets/initialAdminPassword
+9da04e163934413fbb5128977ec567bb
+
+*******************************************************************************************************************
+
+Step 7: Install the necessary plugins
+
+The following plugins needs to be installed
+
+dashboard view
+Build Pipeline
+Deploy to container
+Email Extension Template
+*******************************************************************************************************************
+Step 8: Global Tools Settings - In Jenkins Console - JAVA , MAVEN, GIT
